@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <?= $this->include("css"); ?>
-    <?= $this->include("js"); ?>
+    <?= $this->include("layout/css"); ?>
 </head>
 <body>
-    
+    <div class="container">
+        <?= $this->renderSection("content"); ?>
+    </div>
 
-
-<?= $this->renderSection("content"); ?>
-
+    <?= $this->include("layout/js"); ?>
 </body>
 </html>
