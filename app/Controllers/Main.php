@@ -39,5 +39,16 @@ class Main extends BaseController
         ];
         
         echo view("index", $this->data);
+    } 
+
+    public function soupis_rocniku()
+    {
+
+        $dataRocniku = $this->race_year->join("result", "race_year.category = result.rank", "inner")->where("result.rank")->findAll();
+
+        $this->data += [
+            "rocnik" => $dataRocniku
+        ];
+
     }
 }
