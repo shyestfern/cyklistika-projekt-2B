@@ -32,10 +32,14 @@ class Main extends BaseController
         $dataZavodu = $this->race->join("race_year", "race.default_name = race_year.real_name", "inner")
             ->where("race_year.category", "E")
             ->where("race_year.sex", "M")
-            ->findAll();
+            ->orderBy("start_date", "asc")
+            ->paginate(25);
+
+        $pager = $this->race->pager;
         
         $this->data += [
-            "zavod" => $dataZavodu
+            "zavod" => $dataZavodu,
+            "pager" => $pager
         ];
         
         echo view("index", $this->data);
