@@ -48,7 +48,9 @@ class Main extends BaseController
     public function soupis_rocniku()
     {
 
-        $dataRocniku = $this->race_year->join("result", "race_year.category = result.rank", "inner")->where("result.rank")->findAll();
+        $dataRocniku = $this->race_year->join("result", "race_year.category = result.rank", "inner")
+        ->where("result.rank")
+        ->findAll("asc", 20);
 
         $this->data += [
             "rocnik" => $dataRocniku
