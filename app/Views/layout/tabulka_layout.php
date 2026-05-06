@@ -1,4 +1,6 @@
-<?= $this->renderSection('tabulka') ?>
+<?= $this->extend("layout/stranka_layout"); ?>
+
+<?= $this->section("tabulka"); ?>
 
 <?php 
 
@@ -22,6 +24,7 @@ $template = array(
     'cell_alt_end' => '</td>',
     'table_close' => '</table>',
     );
-    
-    $table->setTemplate($template);
+
 ?>
+
+<?= $this->endSection(); ?>

@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <?= $this->include("layout/tabulka_layout") ?>
+        <?= $this->renderSection("tabulka") ?>
         <?= $this->renderSection("content"); ?>
     </div>
 
