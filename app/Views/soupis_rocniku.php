@@ -18,7 +18,10 @@
 <?php 
 
 $table = new \CodeIgniter\View\Table();
-$table->setHeading('real_name', 'start_date', 'end_date', 'uci_tour', 'rank', 'id_rider');
+if ('start_date = end_date'){
+    echo('start_date');  
+}
+$table->setHeading('real_name', 'start_date - end_date', 'uci_tour', 'rank', 'id_rider');
 $table->addRow($field);
 
 echo $table->generate();
