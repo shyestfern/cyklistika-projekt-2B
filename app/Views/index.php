@@ -37,6 +37,10 @@
 
     $table->setTemplate($template);
     echo $table->generate();
+
+    /**@var object $pager */
+
+    echo $pager->links();
 ?>
 
 <?= $this->endSection(); ?>
