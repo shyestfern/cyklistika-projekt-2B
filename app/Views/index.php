@@ -11,7 +11,13 @@
     /**@var array $zavod */
 
     foreach($zavod as $row){
-        $table->addRow($row->default_name, $row->country);
+
+        $flag = '<span class="fi fi-' . $row->country . ' me-2"></span>';
+
+        $table->addRow(
+            $row->default_name, 
+            $flag . strtoupper($row->country)
+        );
     }
 
     $template = array(
