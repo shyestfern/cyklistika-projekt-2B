@@ -6,7 +6,7 @@
 
 <?php
     $table = new \CodeIgniter\View\Table();
-    $table->setHeading("Název", "Země");
+    $table->setHeading("Název", "Země", "Rok");
 
     /**@var array $zavod */
 
@@ -15,8 +15,9 @@
         $flag = '<span class="fi fi-' . $row->country . ' me-2"></span>';
 
         $table->addRow(
-            $row->default_name, 
-            $flag . strtoupper($row->country)
+            anchor('soupis_rocniku/'.$row->id, $row->default_name), 
+            $flag . strtoupper($row->country),
+            $row->year
         );
     }
 
