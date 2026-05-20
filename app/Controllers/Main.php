@@ -8,16 +8,19 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
 use App\Models\Race;
+use Config\Pagination;
 
 class Main extends BaseController
 {
-    public $data;
-    public $race;
+    private array $data;
+    private object $race;
+    private object $pagination;
 
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
     {
         parent::initController($request, $response, $logger);
 
+        $this->pagination = new Pagination();
         $this->race = new Race();
         $dataRace = $this->race->findAll();
 
@@ -27,7 +30,7 @@ class Main extends BaseController
     }
 
     public function index()
-    {
+    {   
         $dataZavodu = $this->race
 
             // výběr pouze potřebných sloupců,
@@ -43,13 +46,11 @@ class Main extends BaseController
             ->distinct()
 
             ->orderBy("race.id", "asc")
-            ->paginate(20);
-
-        $pager = $this->race->pager;
+            ->paginate($this->pagination->perPage);
         
         $this->data += [
             "zavod" => $dataZavodu,
-            "pager" => $pager
+            "pager" => $this->race->pager
         ];
         
         echo view("index", $this->data);
