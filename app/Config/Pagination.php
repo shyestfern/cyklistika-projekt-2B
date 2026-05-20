@@ -1,7 +1,10 @@
 <?php
 
-$config = array(
-    "base_url" => "http://localhost/zalesak/cyklistika-projekt-2B",
-    "total_rows" => 360,
-    "per_page" => 20
-);
+namespace Config;
+
+use CodeIgniter\Config\BaseConfig;
+
+class Pagination extends BaseConfig
+{
+    public int $perPage = 20;
+}
