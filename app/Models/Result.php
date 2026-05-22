@@ -12,7 +12,9 @@ class Result extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = [
+        "rank"
+    ];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -22,7 +24,7 @@ class Result extends Model
 
     // Dates
     protected $useTimestamps = true;
-    protected $dateFormat    = 'datetime';
+    protected $dateFormat    = 'item';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
