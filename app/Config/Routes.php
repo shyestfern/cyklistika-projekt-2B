@@ -7,3 +7,5 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Main::index');
 $routes->get('soupis_rocniku/(:num)', 'Main::soupis_rocniku/$1');
+$routes->get('polozka/pridat', 'Main::pridat');
+$routes->post('polozka/vytvorit', 'Main::vytvorit');

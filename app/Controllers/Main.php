@@ -68,4 +68,18 @@ class Main extends BaseController
         ];
         */
     }
+
+    function pridat(){
+        echo view('polozka/pridat');
+    }
+
+    function vytvorit(){
+        $name = $this->request->getPost('name');
+
+        $data = array(
+            'name' => $name
+        );
+
+        $this->item->save($data);
+    }
 }
