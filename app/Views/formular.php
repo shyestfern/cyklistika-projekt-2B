@@ -3,8 +3,11 @@
 <?= $this->section("content"); ?>
 
 <form method="post" action="<?= base_url("polozka/vytvorit") ?>">
-    <input name="nazev" placeholder="Vložte název prvku">
-    <button type="submit">Odeslat</button>
+    <div class="form-floating mt-2 mb-2">
+        <input name="nazev" class="form-control" placeholder="Vložte název prvku">
+        <label for="nazev" class="form-label">Název</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Odeslat</button>
 </form>
 
 <?= $this->endSection(); ?>

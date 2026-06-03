@@ -8,12 +8,14 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
 use App\Models\Race;
+use App\Models\RaceYear;
 use Config\Pagination;
 
 class Main extends BaseController
 {
     private array $data;
     private object $race;
+    private object $raceYear;
     private object $pagination;
 
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
@@ -23,6 +25,8 @@ class Main extends BaseController
         $this->pagination = new Pagination();
         $this->race = new Race();
         $dataRace = $this->race->findAll();
+
+        $this->raceYear = new RaceYear();
 
         $this->data = [
             "race" => $dataRace
@@ -70,16 +74,16 @@ class Main extends BaseController
     }
 
     function pridat(){
-        echo view('polozka/pridat');
+        echo view('formular');
     }
 
     function vytvorit(){
-        $name = $this->request->getPost('name');
+        $nazev = $this->request->getPost('nazev');
 
         $data = array(
-            'name' => $name
+            'nazev' => $nazev
         );
 
-        $this->item->save($data);
+        $this->raceYear->save($data);
     }
 }
