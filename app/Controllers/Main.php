@@ -78,12 +78,14 @@ class Main extends BaseController
     }
 
     function vytvorit(){
-        $nazev = $this->request->getPost('nazev');
+        $real_name = $this->request->getPost('real_name');
 
         $data = array(
-            'nazev' => $nazev
+            'real_name' => $real_name
         );
 
         $this->raceYear->save($data);
+
+        return redirect()->route('/');
     }
 }
