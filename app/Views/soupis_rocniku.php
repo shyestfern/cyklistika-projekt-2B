@@ -10,8 +10,6 @@ $table->setHeading("Závod", "Datum konání", "UCI Tour", "Pořádí");
 
 foreach($rocnik as $row){
 
-$rocnik = 20;
-
 $table->addRow("real_name", "start_date - end_date", "uci_tour", "rank");
 
 if("start_date = end_date"){

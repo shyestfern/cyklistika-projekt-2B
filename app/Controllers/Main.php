@@ -71,5 +71,9 @@ class Main extends BaseController
         ->distinct()
 
         ->orderBy("race_year.real_name", "asc");
+
+        $this->data += [
+            "rocnik" =>$dataRocniku
+        ];
     }
 }
