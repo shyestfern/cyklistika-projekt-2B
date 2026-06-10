@@ -8,12 +8,14 @@ use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
 use App\Models\Race;
+use App\Models\RaceYear;
 use Config\Pagination;
 
 class Main extends BaseController
 {
     private array $data;
     private object $race;
+    private object $raceYear;
     private object $pagination;
 
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
@@ -23,6 +25,8 @@ class Main extends BaseController
         $this->pagination = new Pagination();
         $this->race = new Race();
         $dataRace = $this->race->findAll();
+
+        $this->raceYear = new RaceYear();
 
         $this->data = [
             "race" => $dataRace
@@ -75,5 +79,21 @@ class Main extends BaseController
         $this->data += [
             "rocnik" =>$dataRocniku
         ];
+    }
+
+    function pridat(){
+        echo view('formular');
+    }
+
+    function vytvorit(){
+        $real_name = $this->request->getPost('real_name');
+
+        $data = array(
+            'real_name' => $real_name
+        );
+
+        $this->raceYear->save($data);
+
+        return redirect()->route('/');
     }
 }
