@@ -62,15 +62,23 @@ class Main extends BaseController
 
     public function soupis_rocniku($id)
     {
-        /*
-        $dataRocniku = $this->race_year->join("result", "race_year.category = result.rank", "inner")
+        $dataRocniku = $this->rocnik
+
+        ->select("race_year.real_name, race_year.start_date, race_year.end_date, race_year.uci_tour")
+
+        ->join("stage", "race_year.id = stage.id_race_year", "inner")
+        ->where("id")
+        
+        ->join("result", "stage.id = result.id_stage", "inner")
         ->where("result.rank")
-        ->findAll("asc", 20);
+
+        ->distinct()
+
+        ->orderBy("race_year.real_name", "asc");
 
         $this->data += [
-            "rocnik" => $dataRocniku
+            "rocnik" =>$dataRocniku
         ];
-        */
     }
 
     function pridat(){

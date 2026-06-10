@@ -4,16 +4,16 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Result extends Model
+class Stage extends Model
 {
-    protected $table            = 'result';
+    protected $table            = 'stages';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        "rank"
+        "id_race_year"
     ];
 
     protected bool $allowEmptyInserts = false;
@@ -24,7 +24,7 @@ class Result extends Model
 
     // Dates
     protected $useTimestamps = true;
-    protected $dateFormat    = 'int';
+    protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
     protected $deletedField  = 'deleted_at';
