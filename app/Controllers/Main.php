@@ -9,6 +9,7 @@ use Psr\Log\LoggerInterface;
 
 use App\Models\Race;
 use App\Models\RaceYear;
+use App\Models\Result;
 use Config\Pagination;
 
 class Main extends BaseController
@@ -16,6 +17,7 @@ class Main extends BaseController
     private array $data;
     private object $race;
     private object $raceYear;
+    private object $result;
     private object $pagination;
 
     public function initController(RequestInterface $request, ResponseInterface $response, LoggerInterface $logger)
@@ -27,6 +29,8 @@ class Main extends BaseController
         $dataRace = $this->race->findAll();
 
         $this->raceYear = new RaceYear();
+
+        $this->result = new Result();
 
         $this->data = [
             "race" => $dataRace
@@ -78,6 +82,11 @@ class Main extends BaseController
         ];
 
         echo view("soupis_rocniku", $this->data);
+    }
+
+    function soupis_poradi($id)
+    {
+        $dataPoradi = $this->result;
     }
 
     function pridat(){
