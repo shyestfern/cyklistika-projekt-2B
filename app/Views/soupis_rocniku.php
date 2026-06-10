@@ -2,46 +2,55 @@
 
 <?= $this->section("content"); ?>
 
+<?php /**@var object $raceInfo */ ?>
+
+<h1 class="text-center m-4"><?= $raceInfo->default_name ?></h1>
+
 <?php
+    $table = new \CodeIgniter\View\Table();
+    $table->setHeading("Název", "Datum konání", "UCI Tour");
 
-$table = new \CodeIgniter\View\Table();
+    /**@var array $rocnik */
 
-$table->setHeading("Závod", "Datum konání", "UCI Tour", "Pořádí");
+    foreach($rocnik as $row){
 
-foreach($rocnik as $row){
+        $nazev = $row->real_name;
 
-$table->addRow("real_name", "start_date - end_date", "uci_tour", "rank");
+        if($row->start_date == $row->end_date){
+            $datum = $row->start_date;
+        }
+        else{
+            $datum = $row->start_date . " - " . $row->end_date;
+        }
 
-if("start_date = end_date"){
-    echo("start_date");
-}
+        $uci_tour = $row->uci_tour;
 
-}
+        $table->addRow($nazev, $datum, $uci_tour);
+    }
 
-$template = array(
-    'table_open'=> '<table class="table table-bordered table-hover">',
-    'thead_open'=> '<thead class="table-dark">',
-    'thead_close'=> '</thead>',
-    'heading_row_start'=> '<tr>',
-    'heading_row_end'=>' </tr>',
-    'heading_cell_start'=> '<th>',
-    'heading_cell_end' => '</th>',
-    'tbody_open' => '<tbody>',
-    'tbody_close' => '</tbody>',
-    'row_start' => '<tr>',
-    'row_end'  => '</tr>',
-    'cell_start' => '<td>',
-    'cell_end' => '</td>',
-    'row_alt_start' => '<tr>',
-    'row_alt_end' => '</tr>',
-    'cell_alt_start' => '<td>',
-    'cell_alt_end' => '</td>',
-    'table_close' => '</table>',
-    );
+    $template = array(
+        'table_open'=> '<table class="table table-bordered table-hover">',
+        'thead_open'=> '<thead class="table-dark">',
+        'thead_close'=> '</thead>',
+        'heading_row_start'=> '<tr>',
+        'heading_row_end'=>' </tr>',
+        'heading_cell_start'=> '<th>',
+        'heading_cell_end' => '</th>',
+        'tbody_open' => '<tbody>',
+        'tbody_close' => '</tbody>',
+        'row_start' => '<tr>',
+        'row_end'  => '</tr>',
+        'cell_start' => '<td>',
+        'cell_end' => '</td>',
+        'row_alt_start' => '<tr>',
+        'row_alt_end' => '</tr>',
+        'cell_alt_start' => '<td>',
+        'cell_alt_end' => '</td>',
+        'table_close' => '</table>',
+        );
 
-$table->setTemplate($template);
-echo $table->generate();
-
+    $table->setTemplate($template);
+    echo $table->generate();
 ?>
 
 <?= $this->endSection(); ?>

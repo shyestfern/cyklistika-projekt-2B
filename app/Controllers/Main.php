@@ -62,23 +62,22 @@ class Main extends BaseController
 
     public function soupis_rocniku($id)
     {
-        $dataRocniku = $this->rocnik
+        $dataRocniku = $this->raceYear
+            ->select("race_year.id, race_year.real_name, race_year.start_date, race_year.end_date, race_year.uci_tour")
+            ->where("race_year.id_race", $id)
+            ->where("race_year.category", "E")
+            ->where("race_year.sex", "M")
+            ->orderBy("race_year.year", "desc")
+            ->findAll();
 
-        ->select("race_year.real_name, race_year.start_date, race_year.end_date, race_year.uci_tour")
-
-        ->join("stage", "race_year.id = stage.id_race_year", "inner")
-        ->where("id")
-        
-        ->join("result", "stage.id = result.id_stage", "inner")
-        ->where("result.rank")
-
-        ->distinct()
-
-        ->orderBy("race_year.real_name", "asc");
+        $raceInfo = $this->race->find($id); // využiju k nadpisu na stránce
 
         $this->data += [
-            "rocnik" =>$dataRocniku
+            "rocnik" => $dataRocniku,
+            "raceInfo" => $raceInfo
         ];
+
+        echo view("soupis_rocniku", $this->data);
     }
 
     function pridat(){
