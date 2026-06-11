@@ -84,17 +84,10 @@ class Main extends BaseController
         echo view("soupis_rocniku", $this->data);
     }
 
-    /**
-     * POZNÁMKY
-     * 
-     * race_year.id = stage.id_race_year
-     * stage.id = result.id_stage -> využiju rank
-     * result.name_link = rider.link -> využiju jméno
-     */
-
     function soupis_poradi($id)
     {
         $dataPoradi = $this->raceYear
+            ->select("result.rank, rider.first_name, rider.last_name, rider.country, result.time, result.note")
             ->join("stage", "race_year.id = stage.id_race_year", "inner")
             ->join("result", "stage.id = result.id_stage", "inner")
             ->join("rider", "result.name_link = rider.link", "inner")
