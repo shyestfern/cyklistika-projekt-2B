@@ -16,6 +16,8 @@
 
         $nazev = $row->real_name;
 
+        $odkaz = anchor('soupis_poradi/'.$row->id, $nazev);
+
         if($row->start_date == $row->end_date){
             $datum = $row->start_date;
         }
@@ -25,7 +27,7 @@
 
         $uci_tour = $row->uci_tour;
 
-        $table->addRow($nazev, $datum, $uci_tour);
+        $table->addRow($odkaz, $datum, $uci_tour);
     }
 
     $template = array(
