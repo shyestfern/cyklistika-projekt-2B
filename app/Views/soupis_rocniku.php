@@ -25,7 +25,7 @@
             $datum = $row->start_date . " - " . $row->end_date;
         }
 
-        $uci_tour = $row->uci_tour;
+        $uci_tour = $row->name;
 
         $table->addRow($odkaz, $datum, $uci_tour);
     }
@@ -54,5 +54,9 @@
     $table->setTemplate($template);
     echo $table->generate();
 ?>
+
+<div class="text-center">
+    <?= anchor('polozka/pridat', 'Přidat', ['class' => 'btn btn-primary']) ?>
+</div>
 
 <?= $this->endSection(); ?>

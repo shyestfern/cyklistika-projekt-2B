@@ -67,7 +67,8 @@ class Main extends BaseController
     public function soupis_rocniku($id)
     {
         $dataRocniku = $this->raceYear
-            ->select("race_year.id, race_year.real_name, race_year.start_date, race_year.end_date, race_year.uci_tour")
+            ->select("race_year.year, race_year.id, race_year.real_name, race_year.start_date, race_year.end_date, uci_tour_type.name")
+            ->join("uci_tour_type", "race_year.uci_tour = uci_tour_type.id", "inner")
             ->where("race_year.id_race", $id)
             ->where("race_year.category", "E")
             ->where("race_year.sex", "M")
@@ -90,7 +91,7 @@ class Main extends BaseController
             ->select("result.rank, rider.first_name, rider.last_name, rider.country, result.time, result.note")
             ->join("stage", "race_year.id = stage.id_race_year", "inner")
             ->join("result", "stage.id = result.id_stage", "inner")
-            ->join("rider", "result.name_link = rider.link", "inner")
+            ->join("rider", "result.id_rider = rider.id", "inner")
             ->where("race_year.id", $id)
             ->orderBy("result.rank", "asc")
             ->findAll();
@@ -111,9 +112,15 @@ class Main extends BaseController
 
     function vytvorit(){
         $real_name = $this->request->getPost('real_name');
+        $start_date = $this->request->getPost('start_date');
+        $end_date = $this->request->getPost('end_date');
+        $uci_tour = $this->request->getPost('uci_tour');
 
         $data = array(
-            'real_name' => $real_name
+            'real_name' => $real_name,
+            'start_date' => $start_date,
+            'end_date' => $end_date,
+            'uci_tour' => $uci_tour
         );
 
         $this->raceYear->save($data);

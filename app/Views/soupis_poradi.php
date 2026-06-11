@@ -2,7 +2,10 @@
 
 <?= $this->section("content"); ?>
 
-<?php /**@var object $yearInfo */ ?>
+<?php
+ /**@var object $yearInfo */ 
+ /**@var object $poradi */
+ ?>
 
 <h1 class="text-center m-4"><?= $yearInfo->real_name ?></h1>
 
@@ -40,11 +43,13 @@
 
         $jmeno = $row->first_name . " " . $row->last_name;
 
-        $stat = $row->country;
+        $vlajka = '<span class="fi fi-' . $row->country . ' me-2"></span>';
 
-        $cas = $row->time;
+        $stat = strtoupper($row->country);
 
-        $table->addRow($umisteni, $jmeno, $stat, $cas);
+        $cas = ($row->time == NULL) ? "-" : $row->time;
+
+        $table->addRow($umisteni, $jmeno, $vlajka . $stat, $cas);
     }
 
     $template = array(
