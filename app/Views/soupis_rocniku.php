@@ -8,7 +8,7 @@
 
 <?php
     $table = new \CodeIgniter\View\Table();
-    $table->setHeading("Název", "Datum konání", "UCI Tour");
+    $table->setHeading("Název", "Datum konání", "UCI Tour", "", "");
 
     /**@var array $rocnik */
 
@@ -27,7 +27,13 @@
 
         $uci_tour = $row->name;
 
-        $table->addRow($odkaz, $datum, $uci_tour);
+        $upravitLink = anchor('polozka/upravit/'.$row->id, 'Upravit', ['class' => 'btn btn-warning']);
+        $smazatLink = anchor('', 'Smazat', ['class' => 'btn btn-danger']);
+
+        $upravit = '<div class="text-center">'.$upravitLink.'</div>';
+        $smazat = '<div class="text-center">'.$smazatLink.'</div>';
+
+        $table->addRow($odkaz, $datum, $uci_tour, $upravit, $smazat);
     }
 
     $template = array(
@@ -56,7 +62,7 @@
 ?>
 
 <div class="text-center">
-    <?= anchor('polozka/pridat', 'Přidat', ['class' => 'btn btn-primary']) ?>
+    <?= anchor('polozka/pridat', 'Přidat', ['class' => 'btn btn-primary mb-3']) ?>
 </div>
 
 <?= $this->endSection(); ?>

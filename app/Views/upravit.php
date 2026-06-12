@@ -2,7 +2,7 @@
 
 <?= $this->section("content"); ?>
 
-<h1 class="text-center m-4">Přidat ročník</h1>
+<h1 class="text-center m-4">Upravit ročník</h1>
 
 <?php
 
@@ -37,23 +37,9 @@
         'placeholder' => 'Vložte end datum'
     );
 
-    $dataUCI = array(
-        'default' => 'Vyberte položku',
-        1 => 'UCI Worldtour',
-        2 => 'UCI World Championships',
-        3 => 'Africa Tour',
-        4 => 'Asia Tour',
-        5 => 'Europe Tour',
-        6 => 'Men Junior',
-        7 => 'Women Elite',
-        8 => 'Women Junior',
-        9 => 'America Tour',
-        10 => 'Nations Cup',
-        11 => 'National Championship',
-        12 => 'WWT',
-        13 => 'UCI Pro Series',
-        14 => 'Oceania Tour'
-    );
+    /**@var array $uci_tour */
+
+    $dataUCI = $uci_tour;
 
     echo form_open('polozka/vytvorit');
 
@@ -87,22 +73,8 @@
 
 </div>
 
-<div class="mt-2">
-    <textarea id="description" name="description" class="form-control" rows="8"></textarea>
-</div>
-
 <?= form_button($dataBtn); ?>
 
 <?= form_close() ?>
-
-<script>
-    tinymce.init({
-        selector: '#description',
-        height: 300,
-        menubar: true,
-        plugins: 'lists link image table',
-        toolbar: 'undo redo | blocks | bold italic underline | bullist numlist | link image | table | removeformat'
-    });
-</script>
 
 <?= $this->endSection(); ?>

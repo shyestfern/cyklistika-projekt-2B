@@ -127,4 +127,11 @@ class Main extends BaseController
 
         return redirect()->route('/');
     }
+
+    function upravit($id){
+        $data['real_name'] = $this->raceYear->select('race_year.real_name')->find($id);
+        $data['uci_tour'] = $this->raceYear->select('race_year.uci_tour')->orderBy('race_year.uci_tour', 'asc')->findAll();
+
+        echo view('upravit', $data);
+    }
 }
