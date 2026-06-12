@@ -129,8 +129,7 @@ class Main extends BaseController
     }
 
     function upravit($id){
-        $data['real_name'] = $this->raceYear->select('race_year.real_name')->find($id);
-        $data['uci_tour'] = $this->raceYear->select('race_year.uci_tour')->orderBy('race_year.uci_tour', 'asc')->findAll();
+        $data['race_year'] = $this->raceYear->find($id);
 
         echo view('upravit', $data);
     }

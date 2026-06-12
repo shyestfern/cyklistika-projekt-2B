@@ -6,11 +6,16 @@
 
 <?php
 
+    /**@var object $race_year */
+
+    $nazev = $race_year->real_name;
+
     $dataInput = array(
         'name' => 'real_name',
         'id' => 'real_name',
         'class' => 'form-control',
-        'placeholder' => 'Vložte název ročníku'
+        'placeholder' => 'Vložte název ročníku',
+        'value' => $nazev
     );
 
     $dataLabel = array(
@@ -23,25 +28,45 @@
         'content' => 'Odeslat'
     );
 
+    $startDate = $race_year->start_date;
+
     $dataDateStart = array(
         'name' => 'start_date',
         'id' => 'start_date',
         'class' => 'form-control',
-        'placeholder' => 'Vložte start datum'
+        'placeholder' => 'Vložte start datum',
+        'value' => $startDate
     );
+
+    $endDate = $race_year->end_date;
 
     $dataDateEnd = array(
         'name' => 'end_date',
         'id' => 'end_date',
         'class' => 'form-control',
-        'placeholder' => 'Vložte end datum'
+        'placeholder' => 'Vložte end datum',
+        'value' => $endDate
     );
 
-    /**@var array $uci_tour */
+    $dataUCI = array(
+        'default' => 'Vyberte položku',
+        3 => 'Africa Tour',
+        9 => 'America Tour',
+        4 => 'Asia Tour',
+        5 => 'Europe Tour',
+        6 => 'Men Junior',
+        11 => 'National Championship',
+        10 => 'Nations Cup',
+        14 => 'Oceania Tour',
+        13 => 'UCI Pro Series',
+        2 => 'UCI World Championships',
+        1 => 'UCI Worldtour',
+        7 => 'Women Elite',
+        8 => 'Women Junior',
+        12 => 'WWT',
+    );
 
-    $dataUCI = $uci_tour;
-
-    echo form_open('polozka/vytvorit');
+    echo form_open('polozka/upravit');
 
 ?>
 
