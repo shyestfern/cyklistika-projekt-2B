@@ -133,4 +133,24 @@ class Main extends BaseController
 
         echo view('upravit', $data);
     }
+
+    function aktualizovat(){
+        $id = $this->request->getPost('id');
+        $real_name = $this->request->getPost('real_name');
+        $start_date = $this->request->getPost('start_date');
+        $end_date = $this->request->getPost('end_date');
+        $uci_tour = $this->request->getPost('uci_tour');
+
+        $data = array(
+            'id' => $id,
+            'real_name' => $real_name,
+            'start_date' => $start_date,
+            'end_date' => $end_date,
+            'uci_tour' => $uci_tour
+        );
+
+        $this->raceYear->save($data);
+
+        return redirect()->route('/');
+    }
 }

@@ -10,6 +10,7 @@
         'name' => 'real_name',
         'id' => 'real_name',
         'class' => 'form-control',
+        'required' => 'required',
         'placeholder' => 'Vložte název ročníku'
     );
 
@@ -27,6 +28,7 @@
         'name' => 'start_date',
         'id' => 'start_date',
         'class' => 'form-control',
+        'required' => 'required',
         'placeholder' => 'Vložte start datum'
     );
 
@@ -34,6 +36,7 @@
         'name' => 'end_date',
         'id' => 'end_date',
         'class' => 'form-control',
+        'required' => 'required',
         'placeholder' => 'Vložte end datum'
     );
 
@@ -54,6 +57,8 @@
         13 => 'UCI Pro Series',
         14 => 'Oceania Tour'
     );
+
+    $atributyUCI = 'id="uci" class="form-select" required="required"';
 
     echo form_open('polozka/vytvorit');
 
@@ -82,7 +87,7 @@
 
 <div class="form-floating mt-2 mb-2">
 
-    <?= form_dropdown('uci_tour', $dataUCI, 'default', 'id="uci" class="form-select"'); ?>
+    <?= form_dropdown('uci_tour', $dataUCI, 'default', $atributyUCI); ?>
     <?= form_label('UCI Tour', 'uci_tour', $dataLabel); ?>
 
 </div>
