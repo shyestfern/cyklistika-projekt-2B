@@ -115,13 +115,15 @@
 
 <?= form_close() ?>
 
+<script src="node_modules/tinymce/tinymce.min.js"></script>
 <script>
     tinymce.init({
         selector: '#description',
         height: 300,
         menubar: true,
         plugins: 'lists link image table',
-        toolbar: 'undo redo | blocks | bold italic underline | bullist numlist | link image | table | removeformat'
+        toolbar: 'undo redo | blocks | bold italic underline | bullist numlist | link image | table | removeformat',
+        license_key: 'gpl'
     });
 </script>
 
