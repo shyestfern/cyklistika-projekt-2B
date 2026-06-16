@@ -8,7 +8,7 @@
 
 <?php
     $table = new \CodeIgniter\View\Table();
-    $table->setHeading("Název", "Datum konání", "UCI Tour", "", "");
+    $table->setHeading("Název", "Datum konání", "UCI Tour", "");
 
     /**@var array $rocnik */
 
@@ -27,13 +27,23 @@
 
         $uci_tour = $row->name;
 
-        $upravitLink = anchor('polozka/upravit/'.$row->id, 'Upravit', ['class' => 'btn btn-warning']);
-        $smazatLink = anchor('', 'Smazat', ['class' => 'btn btn-danger']);
+        $upravitBtn = anchor('polozka/upravit/'.$row->id, 'Upravit', ['class' => 'btn btn-warning']);
+        $smazatBtn = anchor('', 'Smazat', [
+            'type' => 'button',
+            'class' => 'btn btn-danger ms-2',
+            'data-bs-toggle' => 'modal',
+            'data-bs-target' => '#myModal' . $row->id // unikátní ID řádku
+        ]);
 
-        $upravit = '<div class="text-center">'.$upravitLink.'</div>';
-        $smazat = '<div class="text-center">'.$smazatLink.'</div>';
+        echo form_modal_delete(
+            'myModal' . $row->id, 
+            $row->id, 
+            'Potvrzení smazání', 
+            'Opravdu chcete smazat tuto položku?', 
+            'polozka/smazat'
+        );
 
-        $table->addRow($odkaz, $datum, $uci_tour, $upravit, $smazat);
+        $table->addRow($odkaz, $datum, $uci_tour, $upravitBtn . $smazatBtn);
     }
 
     $template = array(

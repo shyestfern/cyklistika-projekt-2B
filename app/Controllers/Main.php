@@ -153,4 +153,12 @@ class Main extends BaseController
 
         return redirect()->route('/');
     }
+
+    function smazat(){
+        $id = $this->request->getPost('id');
+
+        $this->raceYear->delete($id);
+
+        return redirect()->route('/');
+    }
 }

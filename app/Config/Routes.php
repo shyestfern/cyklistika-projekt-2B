@@ -12,3 +12,4 @@ $routes->get('polozka/pridat', 'Main::pridat');
 $routes->post('polozka/vytvorit', 'Main::vytvorit');
 $routes->get('polozka/upravit/(:num)', 'Main::upravit/$1');
 $routes->put('polozka/aktualizovat', 'Main::aktualizovat');
+$routes->delete('polozka/smazat', 'Main::smazat');
