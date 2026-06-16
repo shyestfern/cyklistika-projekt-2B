@@ -8,7 +8,7 @@
 
 <?php
     $table = new \CodeIgniter\View\Table();
-    $table->setHeading("Logo", "Název", "Datum konání", "UCI Tour", "");
+    $table->setHeading("Logo", "Název", "Datum konání", "UCI Tour", "", "");
 
     /**@var array $rocnik */
 
@@ -42,6 +42,9 @@
             'data-bs-target' => '#myModal' . $row->id // unikátní ID řádku
         ]);
 
+        $upravitDiv = '<div class="text-center">' . $upravitBtn . '</div>';
+        $smazatDiv = '<div class="text-center">' . $smazatBtn . '</div>';
+
         echo form_modal_delete(
             'myModal' . $row->id, 
             $row->id, 
@@ -50,7 +53,7 @@
             'polozka/smazat'
         );
 
-        $table->addRow($logo, $odkaz, $datum, $uci_tour, $upravitBtn . $smazatBtn);
+        $table->addRow($logo, $odkaz, $datum, $uci_tour, $upravitDiv, $smazatDiv);
     }
 
     $template = array(
