@@ -8,11 +8,18 @@
 
 <?php
     $table = new \CodeIgniter\View\Table();
-    $table->setHeading("Název", "Datum konání", "UCI Tour", "");
+    $table->setHeading("Logo", "Název", "Datum konání", "UCI Tour", "");
 
     /**@var array $rocnik */
 
     foreach($rocnik as $row){
+
+        $logo = img([
+            'src' => base_url('logos/' . $row->logo),
+            'alt' => 'Logo ' . $row->real_name,
+            'class' => 'img-fluid',
+            'style' => 'max-height: 50px; width: auto;'
+        ]);
 
         $nazev = $row->real_name;
 
@@ -43,7 +50,7 @@
             'polozka/smazat'
         );
 
-        $table->addRow($odkaz, $datum, $uci_tour, $upravitBtn . $smazatBtn);
+        $table->addRow($logo, $odkaz, $datum, $uci_tour, $upravitBtn . $smazatBtn);
     }
 
     $template = array(

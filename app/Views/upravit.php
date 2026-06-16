@@ -10,7 +10,16 @@
 
     $nazev = $race_year->real_name;
 
-    $dataInput = array(
+    $dataLogo = array(
+        'type' => 'file',
+        'name' => 'logo',
+        'id' => 'logo',
+        'class' => 'form-control',
+        'accept' => '.jpg, .jpeg, .png, .svg'
+    );
+
+
+    $dataName = array(
         'name' => 'real_name',
         'id' => 'real_name',
         'class' => 'form-control',
@@ -76,13 +85,20 @@
         '_method' => 'PUT'
     );
 
-    echo form_open('polozka/aktualizovat');
+    echo form_open_multipart('polozka/aktualizovat');
 
 ?>
 
 <div class="form-floating mt-2 mb-2">
 
-    <?= form_input($dataInput); ?>
+    <?= form_input($dataLogo); ?>
+    <?= form_label('Logo', 'logo', $dataLabel); ?>
+
+</div>
+
+<div class="form-floating mt-2 mb-2">
+
+    <?= form_input($dataName); ?>
     <?= form_label('Název', 'real_name', $dataLabel); ?>
 
 </div>

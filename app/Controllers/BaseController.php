@@ -36,7 +36,7 @@ abstract class BaseController extends Controller
         // Caution: Do not put the this below the parent::initController() call below.
         // $this->helpers = ['form', 'url'];
 
-        $this->helpers = ['my_form', 'form'];
+        $this->helpers = ['html', 'my_form', 'form'];
 
         // Caution: Do not edit this line.
         parent::initController($request, $response, $logger);

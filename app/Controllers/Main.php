@@ -67,7 +67,7 @@ class Main extends BaseController
     public function soupis_rocniku($id)
     {
         $dataRocniku = $this->raceYear
-            ->select("race_year.year, race_year.id, race_year.real_name, race_year.start_date, race_year.end_date, uci_tour_type.name")
+            ->select("race_year.logo, race_year.year, race_year.id, race_year.real_name, race_year.start_date, race_year.end_date, uci_tour_type.name")
             ->join("uci_tour_type", "race_year.uci_tour = uci_tour_type.id", "inner")
             ->where("race_year.id_race", $id)
             ->where("race_year.category", "E")
@@ -111,21 +111,31 @@ class Main extends BaseController
     }
 
     function vytvorit(){
+        $logo = $this->request->getFile('logo');
         $real_name = $this->request->getPost('real_name');
         $start_date = $this->request->getPost('start_date');
         $end_date = $this->request->getPost('end_date');
         $uci_tour = $this->request->getPost('uci_tour');
 
-        $data = array(
+        $uploadKnihovna = new \App\Libraries\FileUpload();
+        $uploadLogo = $uploadKnihovna->uploadFile($logo, 'logos/', 'logo_' . time()); // název loga je s Unix časem 
+
+        if($uploadLogo['uploaded']){ // pouze pokračuj pokud byl upload úspěšný
+
+            $data = array(
+            'logo' => $uploadLogo['name'],
             'real_name' => $real_name,
             'start_date' => $start_date,
             'end_date' => $end_date,
             'uci_tour' => $uci_tour
-        );
+            );
 
-        $this->raceYear->save($data);
-
-        return redirect()->route('/');
+            $this->raceYear->save($data);
+            return redirect()->route('/');
+        }
+        else {
+            return redirect()->back()->with('error', 'Upload nevyšel');
+        }
     }
 
     function upravit($id){
@@ -135,6 +145,7 @@ class Main extends BaseController
     }
 
     function aktualizovat(){
+        $logo = $this->request->getFile('logo');
         $id = $this->request->getPost('id');
         $real_name = $this->request->getPost('real_name');
         $start_date = $this->request->getPost('start_date');
