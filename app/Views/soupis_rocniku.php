@@ -6,6 +6,9 @@
 
 <h1 class="text-center m-4"><?= $raceInfo->default_name ?></h1>
 
+
+<div class="table-responsive">
+
 <?php
     $table = new \CodeIgniter\View\Table();
     $table->setHeading("Logo", "Název", "Datum konání", "UCI Tour", "", "");
@@ -80,6 +83,8 @@
     $table->setTemplate($template);
     echo $table->generate();
 ?>
+
+</div>
 
 <div class="text-center">
     <?= anchor('polozka/pridat', 'Přidat', ['class' => 'btn btn-primary mb-3']) ?>

@@ -9,6 +9,8 @@
 
 <h1 class="text-center m-4"><?= $yearInfo->real_name ?></h1>
 
+<div class="table-responsive">
+
 <?php
     $table = new \CodeIgniter\View\Table();
     $table->setHeading("Umístění", "Jméno", "Stát", "Čas");
@@ -76,5 +78,7 @@
     $table->setTemplate($template);
     echo $table->generate();
 ?>
+
+</div>
 
 <?= $this->endSection(); ?>

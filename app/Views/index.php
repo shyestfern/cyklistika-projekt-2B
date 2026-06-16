@@ -4,6 +4,8 @@
 
 <h1 class="text-center m-4">Závody kategorie elite u mužů</h1>
 
+<div class="table-responsive">
+
 <?php
     $table = new \CodeIgniter\View\Table();
     $table->setHeading("Název", "Země");
@@ -43,7 +45,11 @@
 
     $table->setTemplate($template);
     echo $table->generate();
+?>
 
+</div>
+
+<?php
     /**@var object $pager */
 
     echo $pager->links();
