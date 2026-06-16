@@ -123,18 +123,18 @@ class Main extends BaseController
         if($uploadLogo['uploaded']){ // pouze pokračuj pokud byl upload úspěšný
 
             $data = array(
-            'logo' => $uploadLogo['name'],
-            'real_name' => $real_name,
-            'start_date' => $start_date,
-            'end_date' => $end_date,
-            'uci_tour' => $uci_tour
+                'logo' => $uploadLogo['name'],
+                'real_name' => $real_name,
+                'start_date' => $start_date,
+                'end_date' => $end_date,
+                'uci_tour' => $uci_tour
             );
 
             $this->raceYear->save($data);
             return redirect()->route('/');
         }
         else {
-            return redirect()->back()->with('error', 'Upload nevyšel');
+            return redirect()->route('/');
         }
     }
 
@@ -159,6 +159,19 @@ class Main extends BaseController
             'end_date' => $end_date,
             'uci_tour' => $uci_tour
         );
+
+        if($logo && $logo->getName() !== ''){ // pouze řeš logo pokud bylo nějaké uploadnuto
+            
+            $uploadKnihovna = new \App\Libraries\FileUpload();
+            $uploadLogo = $uploadKnihovna->uploadFile($logo, 'logos/', 'logo_' . time());
+            
+            if($uploadLogo['uploaded']){
+                $data['logo'] = $uploadLogo['name'];
+            }
+            else {
+                return redirect()->route('/');
+            }
+        }
 
         $this->raceYear->save($data);
 
