@@ -2,7 +2,8 @@
 
 namespace App\Libraries;
 
-class FileUpload{
+class FileUpload
+{
 
     public function uploadFile($file, $path, $name){
 

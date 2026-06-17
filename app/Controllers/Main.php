@@ -14,7 +14,6 @@ use Config\Pagination;
 
 class Main extends BaseController
 {
-    private array $data;
     private object $race;
     private object $raceYear;
     private object $result;
@@ -130,7 +129,12 @@ class Main extends BaseController
                 'uci_tour' => $uci_tour
             );
 
-            $this->raceYear->save($data);
+            $alertKnihovna = new \App\Libraries\Alert();
+            $vysledek = $this->raceYear->save($data);
+
+            $alert = $alertKnihovna->makeMessage($vysledek, 'dbAdd');
+            $this->session->setFlashdata('alert', $alert);
+
             return redirect()->route('/');
         }
         else {
